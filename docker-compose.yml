@@ -1,0 +1,9 @@
+services:
+  repeater_dash:
+    container_name: repeater_dash
+    image: repeater_dash
+    volumes:
+      - /home/david/Documents/repeaterbook_api/repeater_dict.json:/app/repeater_dict.json
+    restart: unless-stopped
+    ports:
+      - 8050:8050
