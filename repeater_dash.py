@@ -38,4 +38,4 @@ def update_output(value):
     return f"{value}, {REPEATER_INFO[str(value)]['callsign']}: The distance is {REPEATER_INFO[str(value)]['distance']:.2f} miles. The bearing is {REPEATER_INFO[str(value)]['bearing']:.2f} degrees."
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
