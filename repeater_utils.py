@@ -1,7 +1,8 @@
 import requests
-import geopy.distance
+import geopy.distance # type: ignore
 from pprint import pprint
-from geographiclib.geodesic import Geodesic
+from geographiclib.geodesic import Geodesic # type: ignore
+from typing import Optional
 
 BASEURL = "https://www.repeaterbook.com/api"
 COUNTY = "hennepin"
@@ -10,20 +11,20 @@ SEARCH_THRESHHOLD = 25
 HOME_LAT = 44.954539
 HOME_LON = -93.290858
 
-def get_repeater_data(frequency, state=None):
+def get_repeater_data(frequency: float, state=None) -> Optional[list]:
     if state is None:
         state = STATE
     url = f"{BASEURL}/export.php?state={state}&frequency={format(frequency, '.5f')}"
-
+    
     response = requests.get(url)
     response.raise_for_status()
-
     if response.status_code == 200 and response.json()['count'] > 0:
         return response.json()['results']
     else:
         return None
 
-def return_repeater_in_search_area(repeater_data):
+
+def return_repeater_in_search_area(repeater_data: list) -> Optional[dict]:
     for repeater in repeater_data:
         repeater_lat = repeater["Lat"]
         repeater_lon = repeater["Long"]
