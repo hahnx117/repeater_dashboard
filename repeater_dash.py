@@ -6,11 +6,6 @@ FILENAME = 'repeater_dict.json'
 with open(FILENAME, 'r') as f:
     REPEATER_INFO = json.loads(f.read()) 
 
-#frequency_list = [
-#    145.110,
-#    145.170
-#]
-
 frequency_list = list(REPEATER_INFO.keys())
 
 app = Dash(__name__)
